@@ -1,0 +1,46 @@
+{% extends 'accounts/header.html' %}
+{% load static %}
+{% block content %}
+    <div class="container mt-4">
+        <div>
+          <h1 class="display-4">Car Rent</h1>
+          <p class="lead">You can select from the wide range of Cars available.</p>
+          <hr class="my-4">
+        </div>
+        {% if cars %}
+        {% for car in cars %}
+        <div class="row mt-4" style="center">
+          <div class="col-mt-3" style="margin:auto;">
+            <div class="card text-center" style="width: 20rem; height: 23rem;">
+              <div class="card-body">
+                <h5 class="card-title">Car Bench: {{car.brand}}</h5>
+                <h6 class="card-text">Car Number: <b>{{car.number}}</b></h6>
+                  <div class="card-image">
+                      <figure class="image is-4by3">
+                          {% if car.image %}
+                          <img src="{{ car.image.url }}" alt="car image" style="max-height:150px">
+                          {% else %}
+                          <img src="{% static 'img/placeholder.png' %}" alt="car image" style="max-height:200px">
+                          {% endif %}
+                      </figure>
+                  </div>
+                  {% if user.is_authenticated %}
+                  <div>
+                    <p class="text-center"><a href='info_car/{{car.id}}'>Click here to check details and rent car.</a></p>
+                      {% else %}
+                      <p class="text-center">You are not<a href="/login?next={ request.path|urlencode }"> logged in</a>.</p>
+                      {% endif %}
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="column has-text-centered">
+            <h2 class="title is-4">No cars are currently available</h2>
+            <p>We are sorry for any inconveniences</p>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

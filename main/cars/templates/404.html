@@ -1,0 +1,31 @@
+{% extends "accounts/header.html" %}
+
+{% block content %}
+
+    <section class="hero is-medium is-link">
+      <div class="hero-body has-text-centered">
+        <h1 class="title">
+          404 Page not found
+        </h1>
+        <p class="subtitle">
+          We are sorry, the requested page couldn't be found
+        </p>
+      </div>
+    </section>
+
+    <section class="section is-medium">
+
+            <div class="container">
+                <div class="columns features">
+                    <div class="column">
+                        <div class="content has-text-centered is-size-3">
+                          Return to the <a href="{% url 'accounts:homepage' %}">home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+
+{% endblock %}

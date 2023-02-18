@@ -1,0 +1,22 @@
+{% extends "accounts/header.html" %}
+{% load static %}
+{% block content %}
+
+    {% load crispy_forms_tags %}
+    <div>
+        <h1>Rent car</h1>
+        <br/><br/>
+        {% if submitted %}
+        Your rent was submitted Successfully!!!
+        {% else %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="hidden" id="username" name="username" value="{{ request.user }}">
+                {{ Car.rent }}
+                {{ form.as_p }}
+                <input type="submit" value="submit" class="btn btn-secondary">
+            </form>
+        {% endif %}
+    </div>
+
+{% endblock %}
