@@ -1,0 +1,54 @@
+{% extends "accounts/header.html" %}
+{% load static %}
+{% block content %}
+
+    <section class="section is-medium">
+
+            <div class="container">
+                <div class="columns">
+
+                        <div class="column is-three-fifths">
+                            <h2 class="title is-2">{{ car.brand }} {{ car.year }}</h2>
+                            <p class="is-size-4">{{ car.category }}</p>
+                            <p>{{ car.description }}</p>
+                            <hr>
+
+                            <div class="columns">
+                                <div class="column">
+                                    <h3 class="title is-3">Details</h3>
+                                    <span class="material-symbols-outlined">serial number</span>
+                                    Car number: {{ car.number }}<br>
+                                    <span class="material-symbols-outlined">Type engine in car</span>
+                                    Engine: {{ car.engine  }} <br>
+                                    <span class="material-symbols-outlined">Other info</span>
+                                    Description: {{ car.description }} <br>
+
+                                </div>
+                            </div>
+                        </div>
+
+                          <div class="card-image">
+                            <figure class="image is-4by3">
+                                {% if car.image %}
+                                <img src="{{ car.image.url }}" alt="car image" style="max-height:200px">
+                                {% else %}
+                                <img src="{% static 'img/placeholder.png' %}" alt="car image" style="max-height:200px">
+                                {% endif %}
+                            </figure>
+                          </div>
+                        <div class="column">
+                            {% if user.is_authenticated %}
+                                {% include 'cars/rent.html' %}
+                            {% else %}
+                                <a class="navbar-item button is-primary" href="{% url 'website:login' %}?next={{ request.path|urlencode }}">Ask for availability</a>
+                            {% endif %}
+                        </div>
+
+                </div>
+                </div>
+            </div>
+
+    </section>
+
+
+{% endblock %}
