@@ -1,5 +1,4 @@
 # Car-rent
-Work in Progress
 
 For start project:
 1. Download code and open in python.
